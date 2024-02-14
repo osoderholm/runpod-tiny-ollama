@@ -15,17 +15,21 @@ class HandlerJob(TypedDict):
 def handler(job: HandlerJob):
     ollama_url = "http://0.0.0.0:11434"
     model = sys.argv[1]
-    input = job["input"]
+    system = job["system"]
 
-    # Streaming is not supported in serverless mode
-    input["input"]["stream"] = False
-    # Get the model name from arguements
-    input["input"]["model"] = model
+    input = {
+        "stream": False,
+        "model": model,
+        "prompt": job["prompt"],
+    }
+
+    if system:
+        input["system"] = system
 
     response = requests.post(
         url=f"{ollama_url}/api/generate/",
         headers={"Content-Type": "application/json"},
-        json=input["input"],
+        json=input,
     )
     response.encoding = "utf-8"
 
