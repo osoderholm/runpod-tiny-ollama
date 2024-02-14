@@ -41,4 +41,4 @@ ADD start.sh .
 
 ENV MODEL $MODEL
 
-ENTRYPOINT ["bin/bash", "start.sh", "$MODEL"]
+ENTRYPOINT ["/bin/bash", "start.sh"]

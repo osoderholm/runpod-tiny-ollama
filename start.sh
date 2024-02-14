@@ -8,4 +8,4 @@ while ! ollama list; do
     sleep 0.1
 done
 
-python -u runpod_wrapper.py $1
+python -u runpod_wrapper.py $MODEL
