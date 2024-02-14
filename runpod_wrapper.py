@@ -17,13 +17,13 @@ def handler(job: HandlerJob):
     model = sys.argv[1]
     input = job["input"]
 
-    input["data"]["stream"] = False
-    input["data"]["model"] = model
+    input["stream"] = False
+    input["model"] = model
 
     response = requests.post(
         url=f"{ollama_url}/api/generate/",
         headers={"Content-Type": "application/json"},
-        json=input["data"],
+        json=input,
     )
     response.encoding = "utf-8"
 
