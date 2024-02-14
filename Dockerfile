@@ -39,4 +39,6 @@ RUN chmod +x pull.sh && ./pull.sh $MODEL
 ADD runpod_wrapper.py .
 ADD start.sh .
 
+ENV MODEL $MODEL
+
 ENTRYPOINT ["bin/bash", "start.sh", "$MODEL"]
